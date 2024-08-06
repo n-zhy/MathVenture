@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/MV-Logo.png">
+    <title>MathVenture: About Us</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a class="logo" href="index.html">MathVenture</a>
+            <ul id="nav-links" class="nav-links">
+                <span id="close-btn" class="close-btn"><img src="images/cross copy.png" alt="Menu-icon"></span>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="log-in.html">Log In</a></li>
+                <li><a href="sign-up.html">Sign Up</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>           
+            <span id="menu-btn" class="menu-btn"><img src="images/menu copy.png" alt="Cross-icon"></span>
+        </nav>
+    </header>
+    <section class="hero-section">
+        <div class="content split about-us">
+            <div>
+                <img src="images/bg-right copy.png">
+            </div>
+            <div>
+                <h1>About MathVenture</h1>
+                <p>MathVenture is an exciting and engaging math game designed to make learning fun. MathVenture combines the best of educational content with captivating visuals and interactive mechanics, ensuring that every people who plays our game not only improves their math proficiency but also enjoys the journey.</p>
+                <button><a href="log-in.html">Play Now</a></button>
+            </div>
+        </div>
+    </section>
+    <script>
+        const closeBtn = document.getElementById("close-btn");
+        const menuBtn = document.getElementById("menu-btn");
+        const navLinks = document.getElementById("nav-links");
+
+        menuBtn.addEventListener('click', (event) => {
+            navLinks.style.display = "flex";
+        });
+
+        closeBtn.addEventListener('click', (event) => {
+            navLinks.style.display = "none";
+        });
+
+        /*const handleResize = () => navLinks.style.display = window.innerWidth > 1024 ? "flex" : "none";
+        window.addEventListener('resize', handleResize);
+        handleResize();*/
+    </script>
+</body>
+</html>

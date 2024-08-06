@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/MV-Logo.png">
+    <title>MathVenture: Profile</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a class="logo" href="index.html">MathVenture</a>
+            <ul id="nav-links" class="nav-links">
+                <span id="close-btn" class="close-btn"><img src="images/cross copy.png" alt="Menu-icon"></span>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="log-in.html">Log In</a></li>
+                <li><a href="sign-up.html">Sign Up</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>           
+            <span id="menu-btn" class="menu-btn"><img src="images/menu copy.png" alt="Cross-icon"></span>
+        </nav>
+    </header>
+    <section class="log-in sign-up profile">
+        <form class="profile-container">
+            <div id="profileMessage" class="messageDiv" style="display: none;"></div>
+            <div>
+                <img id="profile-pic" src="images/default-user.png" alt="Avatar">
+            </div>
+            <span id="add-pic">+</span>
+            <input type="file" id="file-input" style="display: none;">
+            <div class="user-name">
+                <input id="name-input" type="text" placeholder="Enter name...">
+                <h1 id="change-name">User-123</h1>
+                <img id="change-name-icon" src="images/change-name.webp" alt="Change Name Icon">
+            </div>
+            <h3 id="score">Score Points: 0</h3>
+            <h3 id="exp">Experience Points: 0</h3>
+            <br>
+            <button id="log-out" class="log-out">Clear Avatar</button>
+        </form>
+    </section>
+    <script>
+        const closeBtn = document.getElementById("close-btn");
+        const menuBtn = document.getElementById("menu-btn");
+        const navLinks = document.getElementById("nav-links");
+
+        menuBtn.addEventListener('click', (event) => {
+            navLinks.style.display = "flex";
+        });
+
+        closeBtn.addEventListener('click', (event) => {
+            navLinks.style.display = "none";
+        });
+
+        function showMessage(message, divId){
+            var messageDiv = document.getElementById(divId);
+            messageDiv.style.display = "block";
+            messageDiv.innerHTML =  message;
+            messageDiv.style.opacity = 1;
+            setTimeout(function(){
+                messageDiv.style.opacity = 0;
+                messageDiv.style.display = "none";
+            }, 3000);
+        }    
+
+        // CHANGE NAME
+        const changeName = document.getElementById("change-name");
+        const changeNameIcon = document.getElementById("change-name-icon");
+        const nameInput = document.getElementById("name-input");
+
+        changeNameIcon.addEventListener('click', (event) => {
+            changeName.style.display = "none";
+            changeNameIcon.style.display = "none";
+            nameInput.style.display = "flex";
+            nameInput.focus();
+
+            nameInput.addEventListener('keypress', (event) => {
+                if(event.key === 'Enter'){
+                    event.preventDefault();
+                    const newName = nameInput.value.trim();
+                    if(newName.length > 13){
+                        showMessage('Maximum of 13 characters!', 'profileMessage');
+                    }
+                    else{
+                        changeName.textContent = newName;
+                        localStorage.setItem('userName', newName);
+                        nameInput.style.display = "none";
+                        changeName.style.display = "flex";
+                        changeNameIcon.style.display = "flex";
+                    }
+                }
+            });
+        });        
+
+        // CHANGE PIC
+        const addPic = document.getElementById("add-pic");
+        const fileInput = document.getElementById("file-input");
+        const profilePic = document.getElementById("profile-pic");
+
+        addPic.addEventListener("click", () => {
+            fileInput.click();
+            fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if(file){
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const imageData = e.target.result;
+                    profilePic.src = imageData;
+                    localStorage.setItem('profilePic', imageData);
+                };
+                reader.readAsDataURL(file);
+            }
+          });
+        });
+
+        // LOG OUT
+        const logOut = document.getElementById("log-out");
+        logOut.addEventListener('click', () => {
+          localStorage.removeItem('profilePic');
+          localStorage.removeItem('userName');
+          document.getElementById('profile-pic').src = 'images/default-user.png';
+          document.getElementById('change-name').textContent = 'User-123';
+        });
+
+        // LOAD SCORE - LOAD SCORE
+        function loadScore(){
+          let score = localStorage.getItem('score');
+          if(score){
+            score = parseInt(score);
+          }
+          else{
+            score = 0;
+            }
+          document.getElementById('score').textContent = `Score Points: ${score}`;
+        }
+
+        function loadExp(){
+          let exp = localStorage.getItem('exp');
+          if(exp){
+            exp = parseInt(exp);
+          }
+          else{
+            exp = 0;
+          }
+          document.getElementById('exp').textContent = `Experience Points: ${exp}`;
+        }
+
+        // SHOW PROFILE
+        document.addEventListener('DOMContentLoaded', () => {
+          const savedPic = localStorage.getItem('profilePic');
+          const savedName = localStorage.getItem('userName');
+
+          if(savedPic){
+              document.getElementById('profile-pic').src = savedPic;
+          }
+          if(savedName){
+              document.getElementById('change-name').textContent = savedName;
+          }
+          loadScore();
+          loadExp();
+        });
+    </script>
+</body>
+</html>

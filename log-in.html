@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/MV-Logo.png">
+  <title>MathVenture: Log In</title>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+        <a class="logo" href="index.html">MathVenture</a>
+        <ul id="nav-links" class="nav-links">
+            <span id="close-btn" class="close-btn"><img src="images/cross copy.png" alt="Cross-icon"></span>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="log-in.html">Log In</a></li>
+            <li><a href="sign-up.html">Sign Up</a></li>
+            <li><a href="profile.html">Profile</a></li>
+        </ul>           
+        <span id="menu-btn" class="menu-btn"><img src="images/menu copy.png" alt="Menu-icon"></span>
+    </nav>
+  </header>
+  <section class="log-in sign-up">
+    <form>
+      <div id="signInMessage" class="messageDiv" style="display: none;"></div>
+      <h1>Log In</h1>
+      <div class="input-box">
+        <input id="log-in-email" type="email" placeholder="email" required>
+        <i class='bx bxs-envelope' alt="Envelope-Icon"></i>
+      </div>
+
+      <div class="input-box">
+        <input id="log-in-password" type="password" placeholder="password" required>
+        <i class='bx bxs-lock-alt' alt="Lock-Icon"></i>
+      </div>
+
+      <div class="remember_forgot">
+        <label for="remember-me"><input type="radio" id="remember-me">Remember Me</label>
+        <a href="#" id="reset">Forgot Password?</a>
+      </div>
+
+      <button id="log-in-button">Log in</button>
+
+      <div class="register-link">
+        <p>Don't have an account? <a href="sign-up.html">Register</a></p>
+      </div>
+
+      <div id="loading" class="loading-container">
+        <div class="dot-spinner">
+          <div class="dot-spinner__dot"></div>
+          <div class="dot-spinner__dot"></div>
+          <div class="dot-spinner__dot"></div>
+          <div class="dot-spinner__dot"></div>
+          <div class="dot-spinner__dot"></div>
+          <div class="dot-spinner__dot"></div>
+          <div class="dot-spinner__dot"></div>
+          <div class="dot-spinner__dot"></div>
+        </div>
+      </div>
+
+    </form>
+  </section>
+  <script type="module">
+    const closeBtn = document.getElementById("close-btn");
+    const menuBtn = document.getElementById("menu-btn");
+    const navLinks = document.getElementById("nav-links");
+
+    menuBtn.addEventListener('click', (event) => {
+      navLinks.style.display = "flex";
+    });
+
+    closeBtn.addEventListener('click', (event) => {
+      navLinks.style.display = "none";
+    });
+
+    /*const handleResize = () => navLinks.style.display = window.innerWidth > 1024 ? "flex" : "none";
+    window.addEventListener('resize', handleResize);
+    handleResize();*/
+
+    // FIREBASE
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
+    import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js"
+    const firebaseConfig = {
+      apiKey: "AIzaSyAmFWgsInMWI7H7ydUtKu0GTFxYlGfxkFo",
+      authDomain: "mathventure-run-4.firebaseapp.com",
+      projectId: "mathventure-run-4",
+      storageBucket: "mathventure-run-4.appspot.com",
+      messagingSenderId: "85382653667",
+      appId: "1:85382653667:web:b71e4539b73177f24ec7d6"
+    };
+
+    const app = initializeApp(firebaseConfig)
+
+    function showMessage(message, divId){
+      var messageDiv = document.getElementById(divId);
+      messageDiv.style.display = "block";
+      messageDiv.innerHTML =  message;
+      messageDiv.style.opacity = 1;
+      setTimeout(function(){
+        messageDiv.style.opacity = 0;
+        messageDiv.style.display = "none";
+      }, 3000);
+    }    
+
+    const signIn = document.getElementById('log-in-button'); 
+
+    signIn.addEventListener('click', (event)=>{
+    event.preventDefault(); 
+
+    const email = document.getElementById('log-in-email').value;
+    const password = document.getElementById('log-in-password').value;
+
+    const loading = document.getElementById('loading');
+    const rememberForgot = document.querySelector('.remember_forgot'); 
+    const registerLink = document.querySelector('.register-link'); 
+
+    rememberForgot.style.display = "none";
+    loading.style.display = "flex";
+    signIn.style.display = "none";
+    registerLink.style.display = "none"; 
+
+    const auth = getAuth();
+
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential)=>{
+      showMessage('login successful!', 'signInMessage');
+      const user = userCredential.user;
+      localStorage.setItem('loggedInUserId', user.uid);
+      setTimeout(()=>{
+          loading.style.display = "flex";
+          signIn.style.display = "block";
+          window.location.href = 'games.html';
+        }, 3000);
+    })
+    .catch((error)=>{
+      const errorCode=error.code;
+      if(errorCode === 'auth/invalid-credential'){
+        showMessage('Incorrect Email or Password', 'signInMessage');
+
+        const loading = document.getElementById('loading');
+        const rememberForgot = document.querySelector('.remember_forgot'); 
+        const registerLink = document.querySelector('.register-link'); 
+
+        rememberForgot.style.display = "flex";
+        loading.style.display = "none";
+        signIn.style.display = "block";
+        registerLink.style.display = "block"; 
+      }
+      else{
+        showMessage('Account does not Exist', 'signInMessage');
+
+        const loading = document.getElementById('loading');
+        const rememberForgot = document.querySelector('.remember_forgot'); 
+        const registerLink = document.querySelector('.register-link'); 
+
+        setTimeout(()=>{
+          rememberForgot.style.display = "flex";
+          loading.style.display = "none";
+          registerLink.style.display = "block"; 
+          signIn.style.display = "block";
+        }, 3000);
+      }
+    })
+  })
+
+  //reset
+  const auth = getAuth();
+
+  const reset = document.getElementById('reset');
+  reset.addEventListener('click', function(event){
+    event.preventDefault();
+
+    const email = document.getElementById('log-in-email').value;
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        showMessage('Email sent!', 'signInMessage');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        showMessage("Enter email", 'signInMessage');
+      });
+    });
+  </script>
+</body>
+</html>

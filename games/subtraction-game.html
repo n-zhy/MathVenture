@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="images/MV-Logo.png">
+    <title>MathVenture: Subtraction</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a class="logo" href="../index.html">MathVenture</a>
+            <ul id="nav-links" class="nav-links">
+                <span id="close-btn" class="close-btn"><img src="../images/cross copy.png" alt="Menu-icon"></span>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about-us.html">About Us</a></li>
+                <li><a href="../games.html">Games</a></li>
+                <li><a href="../log-in.html">Log In</a></li>
+                <li><a href="../sign-up.html">Sign Up</a></li>
+                <li><a href="../profile.html">Profile</a></li>
+            </ul>           
+            <span id="menu-btn" class="menu-btn"><img src="../images/menu copy.png" alt="Cross-icon"></span>
+        </nav>
+    </header>
+    <section class="hero-section games">
+        <div class="content split games-container">
+            <!--<h1>Explore The/Our Fun Of MathTasy</h1>-->
+            <h1>Conquer Math at Your Level</h1>
+            <a href="../levels/sub-level-1.html">Easy</a>
+            <a href="../levels/sub-level-2.html">Beginner</a>
+            <a href="../levels/sub-level-3.html">Moderate</a>
+            <a href="../levels/sub-level-4.html">Difficult</a>
+            <a class="arrow-a arrow-games" href="../games.html"><span class="arrow">&larr;</span>Go back</a>
+        </div>
+    </section>
+    <script>
+        const closeBtn = document.getElementById("close-btn");
+        const menuBtn = document.getElementById("menu-btn");
+        const navLinks = document.getElementById("nav-links");
+
+        menuBtn.addEventListener('click', (event) => {
+            navLinks.style.display = "flex";
+        });
+
+        closeBtn.addEventListener('click', (event) => {
+            navLinks.style.display = "none";
+        });
+
+        /*const handleResize = () => navLinks.style.display = window.innerWidth > 1024 ? "flex" : "none";
+        window.addEventListener('resize', handleResize);
+        handleResize();*/
+    </script>
+</body>
+</html>

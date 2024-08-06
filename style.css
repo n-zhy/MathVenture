@@ -1,0 +1,699 @@
+/* MAIN / INDEX*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    background: url(images/background-img\ copy\ 2.jpg);
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}
+img{
+    width: 30rem;
+}
+header .navbar{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 2rem 2.5rem;
+    z-index: 1000;
+}
+header .navbar .logo{
+    transition: 0.2s ease;
+}
+header .navbar .logo:hover{
+    transform: scale(1.1);
+}
+header .navbar .nav-links{
+    display: flex;
+    gap: 40px;
+}
+header .navbar a{
+    color: #fff;
+}
+header .navbar .nav-links a{
+    border-radius: 10px;
+    padding: 10px 20px;
+    transition: 0.2s ease;
+}
+header .navbar .nav-links a:hover{
+    background: #fff;
+    color: #000;
+}
+.close-btn, .menu-btn{
+    display: none;
+}
+.hero-section{
+    color: #fff;
+    height: 100vh;
+    display: flex;
+}
+.content{
+    width: 100%;
+    max-width: 75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-inline: auto;
+    padding: 1rem;
+}
+.content p{
+    margin-top: 20px;
+}
+.content button{
+    border-radius: 20px;
+    font-weight: 600;
+    padding: 10px 40px;
+    margin-top: 20px;
+    transition: 0.2s ease;
+    border: none;
+    outline: none;
+}
+.content button a{
+    color: #000;
+}
+.content button:hover{
+    opacity: 0.5;
+}
+.content button:active{
+    opacity: 0.2;
+}
+
+/* LOG IN = SIGN UP*/
+.log-in{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-inline: auto;
+    align-items: center;
+}
+.log-in p, h1, a{
+    margin: 0;
+}
+form{
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    position: absolute;
+    width: 25rem;
+    z-index: 10;
+}
+.log-in i{
+    filter: invert(1);
+    position: absolute;
+    right: 2rem;
+    padding-top: 1.5rem;
+    font-size: 20px;
+}
+.log-in h1{
+    text-align: center;
+    font-size: 2.3rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+.log-in .input-box input{
+    padding: 15px;
+    width: 100%;
+    border-radius: 40px;
+    border: none;
+    outline: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.log-in .remember_forgot{
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.log-in .remember_forgot label{
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+.log-in .remember_forgot label:hover{
+    opacity: 0.5;
+}
+.log-in .remember_forgot label:active{
+    opacity: 0.2;
+}
+.log-in .remember_forgot input{
+    margin-right: 5px;
+    position: relative;
+    top: 1px;
+}
+.log-in .remember_forgot a{
+    position: relative;
+    bottom: 1px;
+    color: #fff;
+    font-size: 14px;
+    border-bottom: 2px solid #fff;
+    transition: 0.2s ease;
+}
+.log-in .remember_forgot a:hover{
+    opacity: 0.5;
+}
+.log-in .remember_forgot a:active{
+    opacity: 0.2;
+}
+.log-in button{
+    padding: 10px 40px;
+    width: 100%;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 10px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 20px;
+    text-align: center;
+    transition: 0.2s ease;
+}
+.log-in .profile-container .log-out{
+    font-weight: 300;
+    width: 40%;
+    padding: 2px;
+    margin-top: 20px;
+}
+.sign-up-btn{
+    margin-top: 10px;
+}
+.log-in button:hover{
+    opacity: 0.5;
+}
+.log-in button:active{
+    opacity: 0.2;
+}
+.log-in .register-link{
+    text-align: center;
+}
+.log-in .register-link p a{
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+.log-in .register-link p a:hover{
+    opacity: 0.5;
+}
+.log-in .register-link p a:active{
+    opacity: 0.2;
+}
+.messageDiv{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #fff;
+    padding: 10px 40px;
+    margin-top: 10px;
+    animation: fadeOut 7s forwards;
+}
+.loading-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: none;
+    justify-content: center;
+}
+.dot-spinner {
+    --uib-size: 2.8rem;
+    --uib-speed: .9s;
+    --uib-color: #183153;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: var(--uib-size);
+    width: var(--uib-size);
+}
+.dot-spinner__dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+}
+.dot-spinner__dot::before {
+    content: '';
+    height: 20%;
+    width: 20%;
+    border-radius: 50%;
+    background-color: var(--uib-color);
+    transform: scale(0);
+    opacity: 0.5;
+    animation: pulse0112 calc(var(--uib-speed) * 1.111) ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(18, 31, 53, 0.3);
+}
+.dot-spinner__dot:nth-child(2) {
+    transform: rotate(45deg);
+}
+.dot-spinner__dot:nth-child(2)::before {
+    animation-delay: calc(var(--uib-speed) * -0.875);
+}
+.dot-spinner__dot:nth-child(3) {
+    transform: rotate(90deg);
+}
+.dot-spinner__dot:nth-child(3)::before {
+    animation-delay: calc(var(--uib-speed) * -0.75);
+}
+.dot-spinner__dot:nth-child(4) {
+    transform: rotate(135deg);
+}
+.dot-spinner__dot:nth-child(4)::before {
+    animation-delay: calc(var(--uib-speed) * -0.625);
+}
+.dot-spinner__dot:nth-child(5) {
+    transform: rotate(180deg);
+}
+.dot-spinner__dot:nth-child(5)::before {
+    animation-delay: calc(var(--uib-speed) * -0.5);
+}
+.dot-spinner__dot:nth-child(6) {
+    transform: rotate(225deg);
+}
+.dot-spinner__dot:nth-child(6)::before {
+    animation-delay: calc(var(--uib-speed) * -0.375);
+}
+.dot-spinner__dot:nth-child(7) {
+    transform: rotate(270deg);
+}
+.dot-spinner__dot:nth-child(7)::before {
+    animation-delay: calc(var(--uib-speed) * -0.25);
+}
+.dot-spinner__dot:nth-child(8) {
+    transform: rotate(315deg);
+}
+.dot-spinner__dot:nth-child(8)::before {
+    animation-delay: calc(var(--uib-speed) * -0.125);
+}
+@keyframes pulse0112 {
+    0%,
+    100% {
+      transform: scale(0);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1);
+      opacity: 1;
+    }
+}
+
+/* PROFILE */
+.profile .profile-container{
+    text-align: center;
+}
+.profile .profile-container img{
+    width: 125px;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 0;
+}
+.profile .profile-container span{
+    cursor: pointer;
+}
+.profile .profile-container .user-name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.profile .profile-container .user-name img{
+    width: 1.8rem;
+    cursor: pointer;
+    height: 1rem;
+    filter: invert(1);
+    right: 4rem;
+} 
+.profile .profile-container .user-name input{
+    padding: 15px;
+    border: none;
+    width: 100%;
+    border-radius: 40px;
+    outline: none;
+    display: none;
+}
+.profile-container img{
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 0;
+}
+
+/* GAMES */
+.games .games-container{
+    flex-direction: column;
+    justify-content: center;
+}
+.games .games-container h1{
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+}
+.games .games-container a{
+    margin-top: 1rem;
+    color: #000;
+    width: 25rem;
+    text-align: center;
+    padding: 10px;
+    border-radius: 40px;
+    margin-bottom: 1rem;
+    background: #fff;
+}
+.games .games-container a:hover{
+    opacity: 0.5;
+}
+.games .games-container a:active{
+    opacity: 0.2;
+}
+.games .games-container .arrow-games{
+    font-size: 0.8rem;
+    background: none;
+    color: #fff;
+    margin-right: 5px;
+}
+
+/* LEVELS */
+.levels .game-form{
+    width: 25rem;
+    max-width: 80%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    position: absolute;
+}
+.levels h3 h1 span{
+    margin: 0;
+}
+.levels .game-form h3{
+    text-align: center;
+}
+.levels .question-container{
+    margin-top: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+.levels .question-container span{
+    font-size: 2.25rem;
+    text-align: center;
+}
+.levels .game-form h3{
+    font-size: 2.25rem;
+}
+.levels .game-form .level-title{
+    font-size: 1rem;
+}
+.levels .game-form input{
+    padding: 13px 40px;
+    width: 100%;
+    border-radius: 40px;
+    border: none;
+    margin-bottom: 1.2rem;
+    margin-top: 20px;
+    outline: none;
+}
+.levels .game-form .arrow, .arrow-a{
+    font-size: 0.8rem;
+    color: #fff;
+    margin-right: 5px;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 1024px) {
+    .content h1{
+        font-size: 20px;
+    }
+    .content p{
+       font-size: 15px; 
+    }
+    .content button{
+        padding: 8px 30px;
+        margin-bottom: 20px;
+    }
+    img{
+        width: 25rem;
+    }
+    .close-btn, .menu-btn{
+        display: flex;
+    }
+    header .navbar .nav-links{
+        display: none;
+        position: fixed;
+        width: 250px;
+        height: 100vh;
+        background: #fff;
+        top: 0;
+        padding: 34px 40px 0;
+        left: 0;
+        flex-direction: column;
+    }
+    header .navbar .nav-links a{
+        color: #000;
+        transition: 0.2s ease;
+    }
+    header .navbar .nav-links a:hover{
+        background: #000;
+        color: #fff;
+    }
+    .close-btn img, .menu-btn img{
+        position: absolute;
+        width: 20px;
+        top: 30px;
+        right: 20px;
+        cursor: pointer;
+    }
+    .menu-btn img{
+        filter: invert(1);
+    }
+    .content{
+        padding: 2rem 2.5rem;
+    }
+}
+@media screen and (max-width: 768px) {
+    header .navbar .logo{
+        position: absolute;
+        top: 2rem;
+        left: 1rem;
+    }
+    .content h1{
+        font-size: 15px;
+    }
+    .content p{
+       font-size: 10px; 
+       margin-bottom: 10px;
+    }
+    .content button{
+        padding: 4px 26px;
+        font-weight: 400;
+    }
+    header .navbar .nav-links a{
+        font-size: 15px;
+    }
+    img{
+        width: 20rem;
+    }    
+    .content{
+        padding: 2rem 2.5rem;
+    }
+    /* LOG IN = SIGN UP */
+    .log-in i{
+        position: absolute;
+        right: 2rem;
+        padding-top: 1.3rem;
+        font-size: 20px;
+    }
+    .log-in h1{
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+    .log-in .input-box input{
+        padding: 10px 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .log-in .remember_forgot{
+        margin-top: 6px;
+        margin-bottom: 15px;
+    }
+    .log-in .remember_forgot label{
+        position: relative;
+        top: 2px;
+        font-size: 12px;
+    }
+    .log-in .remember_forgot input{
+        margin-right: 5px;
+        position: relative;
+        top: 3px;
+    }
+    .log-in .remember_forgot a{
+        position: relative;
+        top: 3px;
+        font-size: 12px;
+    }
+    .log-in button{
+        padding: 9px 38px;
+        font-size: 14px;
+        margin-bottom: 10px;
+        border-radius: 20px;
+    }
+    .log-in .register-link p a{
+        border-bottom: 1px solid #fff;
+        font-size: 12px;
+    }
+    .log-in .register-link p{
+        font-size: 12px;
+    }
+    /* GAMES */
+    .games .games-container h1{
+        text-align: center;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    .games .games-container a{
+        margin-top: 1rem;
+        color: #000;
+        width: 15rem;
+        text-align: center;
+        padding: 5px;
+        border-radius: 40px;
+        margin-bottom: 1rem;
+        background: #fff;
+    }
+}
+@media screen and (max-width: 425px) {
+    header .navbar .logo{
+        position: absolute;
+        top: 1.7rem;
+        left: 1.8rem;
+    }
+    .content h1{
+        font-size: 15px;
+    }
+    .content p{
+       font-size: 10px; 
+    }
+    header .navbar .nav-links a{
+        font-size: 13px;
+    }
+    .content button{
+        padding: 4px 26px;
+        font-weight: 400;
+    }
+    img{
+        width: 7rem;
+    }
+    .close-btn, .menu-btn{
+        display: flex;
+    }
+    
+    .menu-btn img{
+        filter: invert(1);
+    }
+    .content{
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        flex-direction: column-reverse;
+        padding: 2rem 2.5rem;
+    }
+    /* ABOUT - US*/
+    .about-us{
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 2rem 2.5rem;
+    }
+    /* LOG-IN */
+    form{
+        width: 90%;
+    }
+    /* PROFILE */
+    .profile .profile-container .user-name{
+        display: flex;
+        flex-direction: column;
+    }
+    .profile .profile-container .user-name h1{
+        font-size: 2rem;
+        margin-bottom: 0;
+    }
+    .profile .profile-container .user-name img{
+        width: 1.2rem;
+        cursor: pointer;
+        height: 0.8rem;
+        filter: invert(1);
+    }
+    .profile .profile-container h3{
+        margin-top: 10px;
+        font-size: 1rem;
+    }
+    /* GAMES */
+    .games .games-container h1{
+        text-align: center;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    .games .games-container a{
+        margin-top: 1rem;
+        color: #000;
+        width: 15rem;
+        text-align: center;
+        padding: 5px;
+        border-radius: 40px;
+        margin-bottom: 1rem;
+        background: #fff;
+    }
+}
+@media screen and (max-width: 375px) {
+    .content h1{
+        font-size: 15px;
+    }
+    .content p{
+       font-size: 10px; 
+    }
+    header .navbar .nav-links a{
+        font-size: 13px;
+    }
+    .content button{
+        padding: 4px 26px;
+        font-weight: 400;
+    }
+    img{
+        width: 7rem;
+    }
+    .close-btn, .menu-btn{
+        display: flex;
+    }
+    .menu-btn img{
+        filter: invert(1);
+    }
+    .content{
+        display: flex;
+        justify-content: center;
+        flex-direction: column-reverse;
+        padding: 2rem 2.5rem;
+    }
+}
